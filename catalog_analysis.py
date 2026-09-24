@@ -52,6 +52,29 @@ def dutration_in_hours(minutes):
     remaining_minutes = minutes % 60
     return f"{hours}ч {remaining_minutes}м"
 
+def rating_tier(rating):
+    if rating >= 9:
+        return "шедевр"
+    elif rating >= 7:
+        return "хорошо"
+    else:
+        return "средне" if rating >= 5 else "слабо"
+
+def decade_label(year):
+    match year:
+        case _ if year > 2020:
+            return "новые"
+        case _ if year >= 2015:
+            return "недавние"
+        case _:
+            return "старые"
+
 print(average_rating(movies)) 
 print(catalog_age_stats(movies))
 print(dutration_in_hours(movies[0]["duration_min"]))
+print(rating_tier(9.2))
+print(rating_tier(4.8))
+print(decade_label(2021))
+print(decade_label(2020))
+print(decade_label(2015))
+print(decade_label(2014))
