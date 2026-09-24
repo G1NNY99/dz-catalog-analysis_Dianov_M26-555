@@ -143,8 +143,6 @@ def titles_sorted_by_rating(movies):
 
 print(titles_sorted_by_rating(movies)[:3])
 
-
-
 def top_n_by_rating(movies, n=3):
     sorted_movies = sorted(
         movies,
@@ -186,8 +184,6 @@ def actor_filmography(movies):
     
 print(actor_filmography(movies)["O. Isaac"])
 
-
-
 average = average_rating(movies)
 
 above_average = {
@@ -197,8 +193,6 @@ above_average = {
 }
 
 print(above_average)
-
-
 
 def all_genres(movies):
     genres = set()
@@ -210,7 +204,6 @@ def all_genres(movies):
     
 print(sorted(all_genres(movies)))
 
-
 def common_actors(movie1, movie2):
     actors1 = set(movie1["actors"])
     actors2 = set(movie2["actors"])
@@ -219,7 +212,6 @@ def common_actors(movie1, movie2):
 
 print(common_actors(movies[0], movies[3]))
 
-
 def genres_only_in_one(movies_a, movies_b):
     genres_a = all_genres(movies_a)
     genres_b = all_genres(movies_b)
@@ -227,3 +219,19 @@ def genres_only_in_one(movies_a, movies_b):
     return genres_a - genres_b
     
 print(genres_only_in_one(movies[5:6], movies[:5]))
+
+def iter_high_rated(movies, min_rating=8.0):
+    for movie in movies:
+        if movie["rating"] >= min_rating:
+            yield movie
+
+for movie in iter_high_rated(movies):
+    print(format_report_line(movie))
+    
+total_duration = sum(
+    movie["duration_min"]
+    for movie in movies
+    if movie["rating"] > 7
+)
+
+print(total_duration)
