@@ -27,7 +27,6 @@ movies = [
      "rating": 7.3, "duration_min": 129, "actors": ["P. Diaz", "T. Chalamet"]},
 ]
 
-
 def average_rating(movies):
     total = 0
     for movie in movies:
@@ -78,3 +77,27 @@ print(decade_label(2021))
 print(decade_label(2020))
 print(decade_label(2015))
 print(decade_label(2014))
+
+for movie in movies:
+    if "comedy" in movie["genres"]:
+        continue
+    print(movie["title"])
+    
+index = 0
+while index < len(movies):
+    movie = movies[index]
+    if movie["rating"] > 9.0:
+        print(movie["title"])
+        break
+    index += 1
+else:
+    print("Шедевров не найдено")
+    
+def count_long_movies(movies, threshold=120):
+    count = 0
+    for movie in movies:
+        if movie["duration_min"] > threshold:
+            count += 1
+    return count
+
+print(count_long_movies(movies))
