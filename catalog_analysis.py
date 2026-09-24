@@ -118,8 +118,6 @@ def make_slug(title):
 
 print(make_slug(normalize_title(movies[7]["title"])))
 
-
-
 def format_report_line(movie):
     title = normalize_title(movie["title"])
     duration = duration_in_hours(movie["duration_min"])
@@ -131,3 +129,35 @@ def format_report_line(movie):
     )
 
 print(format_report_line(movies[7]))
+
+def titles_sorted_by_rating(movies):
+    sorted_movies = sorted(
+        movies,
+        key=lambda movie: movie["rating"],
+        reverse=True,
+    )
+    titles = []
+    for movie in sorted_movies:
+        titles.append(movie["title"])
+    return titles
+
+print(titles_sorted_by_rating(movies)[:3])
+
+
+
+def top_n_by_rating(movies, n=3):
+    sorted_movies = sorted(
+        movies,
+        key=lambda movie: movie["rating"],
+        reverse=True,
+    )
+
+    top_movies = sorted_movies[:n]
+    result = []
+
+    for movie in top_movies:
+        result.append((movie["title"], movie["rating"]))
+
+    return result
+
+print(top_n_by_rating(movies))
